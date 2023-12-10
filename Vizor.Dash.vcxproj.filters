@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Vizor">
+      <UniqueIdentifier>{c5574599-0944-4140-bb26-8aff0f1797f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Vizor\Dash">
+      <UniqueIdentifier>{004bc55d-1281-442d-8475-1421342298a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Vizor\Dash\Core">
+      <UniqueIdentifier>{04177961-7fd2-4a7e-8665-4e83c6b11992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Vizor">
+      <UniqueIdentifier>{e6a24acf-0a7c-473f-9859-d24fbb5f2a44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Vizor\Dash">
+      <UniqueIdentifier>{d5327645-30cc-4b76-a87b-c8c9e8761327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Vizor\Dash\Core">
+      <UniqueIdentifier>{c06ef5db-e87e-49b8-905e-fa6771f9639a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Vizor\Dash\Utility">
+      <UniqueIdentifier>{3a5da783-3898-4c00-9c14-2ca6913b79a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Vizor\Dash\Layout">
+      <UniqueIdentifier>{94d53d08-ee8c-4870-9d93-e0f72cf1c04d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Vizor\Dash\Core\DefaultKeyboard.h">
+      <Filter>Header Files\Vizor\Dash\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Core\DefaultPointer.h">
+      <Filter>Header Files\Vizor\Dash\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Core\Keyboard.h">
+      <Filter>Header Files\Vizor\Dash\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Core\Pointer.h">
+      <Filter>Header Files\Vizor\Dash\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash.h">
+      <Filter>Header Files\Vizor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Core.h">
+      <Filter>Header Files\Vizor\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Layout.h">
+      <Filter>Header Files\Vizor\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Utility.h">
+      <Filter>Header Files\Vizor\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Layout\ABNT2.h">
+      <Filter>Header Files\Vizor\Dash\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Layout\Default.h">
+      <Filter>Header Files\Vizor\Dash\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vizor\Dash\Utility\Provide.h">
+      <Filter>Header Files\Vizor\Dash\Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\DefaultKeyboard.cpp">
+      <Filter>Source Files\Vizor\Dash\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DefaultPointer.cpp">
+      <Filter>Source Files\Vizor\Dash\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Keyboard.cpp">
+      <Filter>Source Files\Vizor\Dash\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pointer.cpp">
+      <Filter>Source Files\Vizor\Dash\Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
