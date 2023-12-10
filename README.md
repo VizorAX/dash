@@ -5,6 +5,7 @@ Windows input injection library written in C++
 - Interoperability with C
 
 Exported functionality
+```
 - bool Vizor_Dash_Core_Pointer_MoveToRaw(Pointer *self, int32_t x, int32_t y);
 - bool Vizor_Dash_Core_Pointer_MoveTo(Pointer *self, int32_t x, int32_t y);
 - bool Vizor_Dash_Core_Pointer_MoveBy(Pointer *self, int32_t xDelta, int32_t yDelta);
@@ -17,3 +18,4 @@ Exported functionality
 - bool Vizor_Dash_Core_Pointer_IsDown(Pointer *self, Button button);
 - bool Vizor_Dash_Core_Pointer_WasPressed(Pointer *self, Button button);
 - void Vizor_Dash_Core_Pointer_Destroy(Pointer *self);
+```
