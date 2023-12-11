@@ -19,3 +19,29 @@ bool Vizor_Dash_Core_Pointer_IsDown(Pointer *self, Button button);
 bool Vizor_Dash_Core_Pointer_WasPressed(Pointer *self, Button button);
 void Vizor_Dash_Core_Pointer_Destroy(Pointer *self);
 ```
+
+C++ example
+```cpp
+#include <Vizor/Dash.h>
+
+// Layout selected
+using namespace Vizor::Dash::Layout::Default;
+using namespace Vizor::Dash::Core;
+using namespace std;
+
+int main()
+{
+    unique_ptr<Keyboard> = make_unique<DefaultKeyboard>();
+    unique_ptr<Pointer> = make_unique<DefaultPointer>();
+
+    auto success = true;
+
+    success &= pointer->MoveRaw(0x7fff, 0x7fff);
+
+    success &= keyboard->Hold(KEY_LWIN);
+    success &= keyboard->Press(KEY_R);
+    success &= keyboard->Release(KEY_LWIN);
+
+    return !success;
+}
+```
