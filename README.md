@@ -37,7 +37,7 @@ int main()
 
     auto success = true;
 
-    success &= pointer->MoveRaw(0x7fff, 0x7fff);
+    success &= pointer->MoveTo(640, 360);
 
     success &= keyboard->Hold(KEY_LWIN);
     success &= keyboard->Press(KEY_R);
