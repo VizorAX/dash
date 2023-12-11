@@ -22,6 +22,7 @@ void Vizor_Dash_Core_Pointer_Destroy(Pointer *self);
 
 C++ example
 ```cpp
+#include <memory>
 #include <Vizor/Dash.h>
 
 // Layout selected
