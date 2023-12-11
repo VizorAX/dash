@@ -31,8 +31,8 @@ using namespace std;
 
 int main()
 {
-    unique_ptr<Keyboard> = make_unique<DefaultKeyboard>();
-    unique_ptr<Pointer> = make_unique<DefaultPointer>();
+    unique_ptr<Keyboard> keyboard = make_unique<DefaultKeyboard>();
+    unique_ptr<Pointer> pointer = make_unique<DefaultPointer>();
 
     auto success = true;
 
