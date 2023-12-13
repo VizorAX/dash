@@ -92,6 +92,7 @@ auto constexpr KEY_OEM_COMMA = Default::KEY_OEM_COMMA;
 auto constexpr KEY_OEM_PERIOD = Default::KEY_OEM_PERIOD;
 auto constexpr KEY_SEMICOLON = Default::KEY_OEM_2;
 auto constexpr KEY_SLASH = Default::KEY_ABNT_C1;
+auto constexpr KEY_RSHIFT = Default::KEY_RSHIFT;
 
 auto constexpr KEY_LCONTROL = Default::KEY_LCONTROL;
 auto constexpr KEY_LWIN = Default::KEY_LWIN;

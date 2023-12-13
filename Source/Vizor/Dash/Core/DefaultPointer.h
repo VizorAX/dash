@@ -9,13 +9,13 @@ namespace Vizor::Dash::Core
 
 struct DefaultPointer: Pointer
 {
-	bool MoveToRaw(int32_t x, int32_t y) override;
+	bool MoveTo(double x, double y) override;
 	bool MoveTo(int32_t x, int32_t y) override;
 	bool MoveBy(int32_t xDelta, int32_t yDelta) override;
 	bool Hold(Button button) override;
 	bool Release(Button button) override;
 	bool Click(Button button) override;
-	bool ScrollBy(int32_t amount, int32_t delayAfter) override;
+	bool ScrollBy(int32_t amount, ScrollDirection direction, int32_t delayAfter) override;
 	bool GetPosition(CursorPosition &output) override;
 	bool IsDown(Button button) override;
 	bool WasPressed(Button button) override;

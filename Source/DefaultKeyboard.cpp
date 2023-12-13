@@ -1,14 +1,16 @@
+#include <new>
 #include "Vizor/Dash/Core/DefaultKeyboard.h"
 
 using namespace Vizor::Dash::Core;
+using namespace std;
 
-void DefaultKeyboard::Hold_(Key key, INPUT &result)
+void DefaultKeyboard::Hold(Key key, Input &result)
 {
     ZeroMemory(&result, sizeof result);
 
     auto scan = MapVirtualKeyA(key, MAPVK_VK_TO_VSC_EX);
 
-    bool isExtended =
+    auto isExtended =
         0xe000 == (scan & 0xe000)   ||
         0xe000 == (key & 0xe000)    ||
         false;
@@ -21,8 +23,8 @@ void DefaultKeyboard::Hold_(Key key, INPUT &result)
 
 bool DefaultKeyboard::Hold(Key key)
 {
-    INPUT hold;
-    Hold_(key, hold);
+    Input hold;
+    Hold(key, hold);
 
     auto sent = SendInput(1, &hold, sizeof hold);
 
@@ -31,8 +33,8 @@ bool DefaultKeyboard::Hold(Key key)
 
 bool DefaultKeyboard::Release(Key key)
 {
-    INPUT release;
-    Hold_(key, release);
+    Input release;
+    Hold(key, release);
     release.ki.dwFlags |= KEYEVENTF_KEYUP;
 
     auto sent = SendInput(1, &release, sizeof release);
@@ -49,14 +51,14 @@ bool DefaultKeyboard::Press(Key key, int32_t delay)
 
 bool DefaultKeyboard::Press(Key key)
 {
-    INPUT hold;
-    Hold_(key, hold);
+    Input hold;
+    Hold(key, hold);
 
     auto release = hold;
     release.ki.dwFlags |= KEYEVENTF_KEYUP;
 
-    INPUT inputGroup[2] { hold, release };
-    auto sent = SendInput(2, inputGroup, sizeof INPUT);
+    Input inputGroup[2] { hold, release };
+    auto sent = SendInput(2, inputGroup, sizeof Input);
     return sent == 2;
 }
 
@@ -83,6 +85,6 @@ bool DefaultKeyboard::IsDown(Key key)
 
 PROVIDE Keyboard *Vizor_Dash_Core_DefaultKeyboard_Create()
 {
-    auto self = new DefaultKeyboard;
+    auto self = new (nothrow) DefaultKeyboard;
     return self;
 }

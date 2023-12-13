@@ -27,7 +27,7 @@ struct Keyboard
 	// True if pressed after last call
 	virtual bool WasPressed(Key key) = 0;
 
-	virtual ~Keyboard() {}
+	virtual ~Keyboard() = default;
 };
 
 } // namespace Vizor::Dash::Core

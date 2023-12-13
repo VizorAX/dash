@@ -1,39 +1,46 @@
+#include <new>
 #include <Windows.h>
 #include "Vizor/Dash/Core/DefaultPointer.h"
 
-using namespace Vizor::Dash::Core;
-
 #ifdef _DEBUG
-#define CHECK_RAW_RANGE(X, Y) \
-    if (X < 0 || X > 0xffff) return false; \
-    if (Y < 0 || Y > 0xffff) return false;
+    #define CHECK_RANGE(X, Y) \
+        if (X >= 0 && X <= 1) return false; \
+        if (Y >= 0 && Y <= 1) return false;
 #else
-#define CHECK_RAW_RANGE(X, Y)
-#endif // DEBUG
+    #define CHECK_RANGE(X, Y)
+#endif // _DEBUG
 
-bool DefaultPointer::MoveToRaw(int32_t x, int32_t y)
+using namespace std;
+using namespace Vizor::Dash::Core;
+using Point = POINT;
+using Input = INPUT;
+
+bool DefaultPointer::MoveTo(double x, double y)
 {
-    CHECK_RAW_RANGE(x, y);
+    CHECK_RANGE(x, y);
 
-    bool success = Move(x, y, MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE);
+    int32_t const x_ = x * 0xffff;
+    int32_t const y_ = y * 0xffff;
+
+    auto success = Move(x_, y_, MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE);
     return success;
 }
 
 bool DefaultPointer::MoveTo(int32_t x, int32_t y)
 {
-    bool success = SetCursorPos(x, y);
+    auto success = SetCursorPos(x, y);
     return success;
 }
 
 bool DefaultPointer::MoveBy(int32_t x, int32_t y)
 {
-    bool success = Move(x, y, MOUSEEVENTF_MOVE);
+    auto success = Move(x, y, MOUSEEVENTF_MOVE);
     return success;
 }
 
 bool DefaultPointer::Move(int32_t x, int32_t y, int32_t flags)
 {
-    INPUT input;
+    Input input;
     ZeroMemory(&input, sizeof input);
 
     input.type = INPUT_MOUSE;
@@ -47,7 +54,7 @@ bool DefaultPointer::Move(int32_t x, int32_t y, int32_t flags)
 
 bool DefaultPointer::Hold(Button button)
 {
-    INPUT input;
+    Input input;
     ZeroMemory(&input, sizeof input);
 
     input.type = INPUT_MOUSE;
@@ -59,7 +66,7 @@ bool DefaultPointer::Hold(Button button)
 
 bool DefaultPointer::Release(Button button)
 {
-    INPUT input;
+    Input input;
     ZeroMemory(&input, sizeof input);
 
     input.type = INPUT_MOUSE;
@@ -71,38 +78,41 @@ bool DefaultPointer::Release(Button button)
 
 bool DefaultPointer::Click(Button button)
 {
-    bool success = true;
+    auto success = true;
     success &= Hold(button);
     success &= Release(button);
     return success;
 }
 
-bool DefaultPointer::ScrollBy(int32_t count, int32_t delay)
+bool DefaultPointer::ScrollBy(int32_t count, ScrollDirection direction, int32_t delay)
 {
 
 #ifdef _DEBUG
-    if (count == 0 || count < -999'999 || count > 999'999)
+    auto constexpr limit = 0xff'ff'ff;
+    auto const ok =
+        count != 0      &&
+        count >= -limit &&
+        count <= +limit &&
+        delay >= 0      &&
+        delay <= limit  &&
+        true;
+
+    if (!ok)
     {
         return false;
     }
-    if (delay < 0 || delay > 999'999)
-    {
-        return false;
-    }
-#endif
+#endif // _DEBUG
 
-    auto absoluteCount = count * ((count > 0) - (count < 0));
-
-    INPUT input;
+    Input input;
     ZeroMemory(&input, sizeof input);
 
     input.type = INPUT_MOUSE;
     input.mi.dwFlags = MOUSEEVENTF_WHEEL;
-    input.mi.mouseData = WHEEL_DELTA * (count / absoluteCount);
+    input.mi.mouseData = WHEEL_DELTA * direction;
 
     auto sent = 0;
-    auto const expected = absoluteCount;
-    while (absoluteCount--)
+    auto const expected = count;
+    while (count--)
     {
         sent += SendInput(1, &input, sizeof input);
         Sleep(delay);
@@ -113,9 +123,9 @@ bool DefaultPointer::ScrollBy(int32_t count, int32_t delay)
 
 bool DefaultPointer::GetPosition(CursorPosition &result)
 {
-    POINT point;
+    Point point;
 
-    bool success = GetCursorPos(&point);
+    auto success = GetCursorPos(&point);
 
     result.x = point.x;
     result.y = point.y;
@@ -139,6 +149,6 @@ bool DefaultPointer::WasPressed(Button button)
 
 PROVIDE Pointer *Vizor_Dash_Core_DefaultPointer_Create()
 {
-    auto self = new DefaultPointer;
+    auto self = new (nothrow) DefaultPointer;
     return self;
 }

@@ -1,13 +1,17 @@
 #pragma once
 
-#ifdef			STATIC_BUILD
+#ifdef			EXPORT_STATIC
 	#define		PROVIDE
-#elif defined	DYNAMIC_BUILD
+
+#elif defined	EXPORT_SHARED
 	#define		PROVIDE __declspec(dllexport)
-#elif defined	DYNAMIC_LINK
+
+#elif defined	IMPORT_SHARED
 	#define		PROVIDE __declspec(dllimport)
-	#pragma		comment (lib, "Vizor.Dash.lib")
+	#pragma		comment (lib, "Vizor.Dash.Shared.lib")
+
 #else
 	#define		PROVIDE
 	#pragma		comment (lib, "Vizor.Dash.Static.lib")
+
 #endif

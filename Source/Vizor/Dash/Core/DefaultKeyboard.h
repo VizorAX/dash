@@ -19,7 +19,9 @@ struct DefaultKeyboard: Keyboard
     bool WasPressed(Key key) override;
 
 private:
-    void Hold_(Key key, INPUT &result);
+    using Input = INPUT;
+
+    void Hold(Key key, Input &result);
 };
 
 }
