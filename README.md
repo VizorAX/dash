@@ -1,10 +1,10 @@
 # Vizor AX Dash
 <br>
 Windows input injection library written in C++
-<br>
+<br/>
 - Also works within DirectX context
 - Interoperability with C
-<br>
+<br/>
 Exported functionality (shared build)
 ```cpp
 Pointer *Vizor_Dash_Core_DefaultPointer_Create();
