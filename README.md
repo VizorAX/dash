@@ -2,6 +2,7 @@
 \
 Windows input injection library written in C++
 - Also works within DirectX context
+- Relative mouse movement support
 - Interoperability with C
 
 \
